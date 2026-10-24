@@ -1,0 +1,35 @@
+--- a/pmca/platform/__init__.py
++++ b/pmca/platform/__init__.py
+@@ -47,6 +47,11 @@
+    bk.addCommand('unlock', Command(self.unlockBackup, (), 'Unlock protected backup settings'))
+    self.addCommand('bk', bk)
+ 
++  # --- añadido local: escribe los 35 bytes de idioma en UNA sola
++  #     operacion PDT, en vez de 35 reescrituras del blob completo.
++  self.addCommand('lang', ResidueCommand(self.setLanguages, 0,
++   'Set all 35 language bytes in one PDT write', '<B0> <B1> ... <B34>'))
++
+  def run(self):
+   self.backend.start()
+   super(CameraShell, self).run()
+@@ -127,6 +132,20 @@
+   patch.apply()
+   print('Success')
+ 
++ def setLanguages(self, data):
++  values = bytearray(self._parseHexData(data))
++  base, n = 0x010d008f, 35
++  if len(values) != n:
++   raise Exception('Need exactly %d bytes, got %d' % (n, len(values)))
++  bad = [v for v in values if v not in (1, 2)]
++  if bad:
++   raise Exception('Bytes must be 01 or 02, got %r' % bad)
++  patch = BackupPatchDataInterface(self.backend)
++  for i, v in enumerate(values):
++   patch.writeProp(base + i, bytes(bytearray([v])))
++  patch.apply()
++  print('Success: %d/%d languages enabled' % (sum(1 for v in values if v == 1), n))
++
+  def syncBackup(self):
+   self.backend.syncBackup()
+ 

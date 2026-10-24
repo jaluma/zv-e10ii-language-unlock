@@ -1,0 +1,13 @@
+# Session logs hold the body's serial number. The ones tracked under logs/
+# were sanitised by hand.
+logs/*.log
+!logs/recon-20261024-220503.log
+!logs/write-cec-20261024-220832.log
+!logs/probe-id1-20261024-221107.log
+!logs/probe-pdt-20261024-221254.log
+!logs/lang-cec-20261024-221413.log
+
+.venv/
+__pycache__/
+*.pyc
+.DS_Store

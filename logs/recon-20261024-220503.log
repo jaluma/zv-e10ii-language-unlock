@@ -1,0 +1,56 @@
+Using drivers libusb-MSC, libusb-MTP, libusb-vendor-specific
+Looking for Sony devices
+
+Querying mass storage device
+Sony DSC is a camera in mass storage mode
+
+Switching to service mode
+
+Waiting for camera to switch...
+Found a camera in service mode
+Authenticating
+Starting service shell...
+
+Welcome to platform shell.
+Type `help` for the list of supported commands.
+Type `exit` to quit.
+>Model:              ZV-E10M2
+Product code:       <redacted>
+Serial number:      <redacted>
+Backup region:      CX89300_J1
+>02
+>01
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>02
+>Done
